@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Worker List
+    <a href="{% url 'taxi:worker-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+  {% if worker_list %}
+    <ul>
+      {% for worker in worker_list %}
+        <li>
+          <a href="{% url 'taxi:worker-detail' worker.id %}">{{ worker.username }}</a>
+          ({{ worker.position.name }})
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No workers available</p>
+  {% endif %}
+{% endblock %}
