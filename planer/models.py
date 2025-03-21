@@ -4,46 +4,24 @@ from django.urls import reverse
 
 
 class Position(models.Model):
-    class ITPositions(models.TextChoices):
-        DEVELOPER = "Developer"
-        QA_ENGINEER = "QA Engineer"
-        SYSTEM_ADMIN = "System Admin"
-        DEVOPS_ENGINEER = "DevOps Engineer"
-        DATA_SCIENTIST = "Data Scientist"
-        UX_DESIGNER = "UX Designer"
-
-    name = models.CharField(
-        max_length=50,
-        choices=ITPositions.choices,
-        default=ITPositions.DEVELOPER,
-    )
+    name = models.CharField(max_length=50,)
 
     class Meta:
         ordering = ["name"]
 
     def __str__(self):
-        return f"{self.get_name_display()}"
+        return f"{self.name}"
 
 
 class TaskType(models.Model):
-    class TaskTypes(models.TextChoices):
-        BUG = "Bug"
-        NEW_FEATURE = "New Feature"
-        REFACTORING = "Refactoring"
-        QA = "QA"
-        BREAKING_CHANGE = "Breaking Change"
 
-    name = models.CharField(
-        max_length=50,
-        choices=TaskTypes.choices,
-        default=TaskTypes.BUG,
-    )
+    name = models.CharField(max_length=100)
 
     class Meta:
         ordering = ["name"]
 
     def __str__(self):
-        return f"{self.get_name_display()}"
+        return f"{self.name}"
 
 
 class Worker(AbstractUser):
@@ -83,5 +61,3 @@ class Task(models.Model):
 
     def __str__(self):
         return self.name
-
-
