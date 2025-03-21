@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import (PositionListView,
+from .views import (
+                    index,
+                    PositionListView,
                     PositionCreateView,
                     PositionDeleteView,
                     TaskTypeListView,
@@ -17,6 +19,7 @@ from .views import (PositionListView,
                     TaskDeleteView)
 
 urlpatterns = [
+    path("", index, name="index"),
     path('positions/', PositionListView.as_view(), name='position-list'),
     path('position/create/', PositionCreateView.as_view(), name='position-create'),
     path('position/<int:pk>/delete/', PositionDeleteView.as_view(), name='position-delete'),

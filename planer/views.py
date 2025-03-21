@@ -1,9 +1,32 @@
 from django.urls import reverse_lazy
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 from planer.models import Position, TaskType, Worker, Task
 
+
+@login_required
+def index(request):
+
+    num_tasks = Task.objects.count()
+    num_workers = Worker.objects.count()
+    num_positions = Position.objects.count()
+    num_task_types = TaskType.objects.count()
+
+
+    num_visits = request.session.get("num_visits", 0)
+    request.session["num_visits"] = num_visits + 1
+
+    context = {
+        "num_tasks": num_tasks,
+        "num_workers": num_workers,
+        "num_positions": num_positions,
+        "num_task_types": num_task_types,
+        "num_visits": num_visits + 1,
+    }
+
+    return render(request, "planer/index.html", context=context)
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
