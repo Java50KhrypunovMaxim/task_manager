@@ -47,7 +47,10 @@ class TaskType(models.Model):
 
 
 class Worker(AbstractUser):
-    position = models.ForeignKey(Position, on_delete=models.CASCADE)
+    position = models.ForeignKey(Position,
+                                 on_delete=models.CASCADE,
+                                 null=True,
+                                 blank=True)
 
     class Meta:
         verbose_name = "worker"
@@ -57,7 +60,7 @@ class Worker(AbstractUser):
         return f"{self.username} ({self.first_name} {self.last_name})"
 
     def get_absolute_url(self):
-        return reverse("taxi:worker-detail", kwargs={"pk": self.pk})
+        return reverse("planer:worker-detail", kwargs={"pk": self.pk})
 
 
 class Task(models.Model):

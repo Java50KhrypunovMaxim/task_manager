@@ -2,19 +2,33 @@
 
 {% block content %}
   <h1>
-    Worker List
-    <a href="{% url 'taxi:worker-create' %}" class="btn btn-primary link-to-page">Create</a>
+    Task List
+    <a href="{% url 'planer:task-create' %}" class="btn btn-primary link-to-page">Create</a>
   </h1>
-  {% if worker_list %}
+  {% if task_list %}
     <ul>
-      {% for worker in worker_list %}
+      {% for task in task_list %}
         <li>
-          <a href="{% url 'taxi:worker-detail' worker.id %}">{{ worker.username }}</a>
-          ({{ worker.position.name }})
+          <a href="{% url 'planer:task-detail' task.id %}">{{ task.name }}</a>
+          <br>
+          <strong>Priority:</strong> {{ task.priority }}
+          <br>
+          <strong>Deadline:</strong> {{ task.deadline }}
+          <br>
+          <strong>Assigned Workers:</strong>
+          {% if task.assignees.all %}
+            <ul>
+              {% for worker in task.assignees.all %}
+                <li>{{ worker.username }} ({{ worker.position.name }})</li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>No workers assigned</p>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>No workers available</p>
+    <p>No tasks available</p>
   {% endif %}
 {% endblock %}
