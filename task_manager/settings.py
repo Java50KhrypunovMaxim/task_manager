@@ -37,9 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "planer",
     "debug_toolbar",
     "crispy_forms",
-    "planer",
+
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,7 @@ TEMPLATES = [
         },
     },
 ]
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+
 
 WSGI_APPLICATION = 'task_manager.wsgi.application'
 
@@ -129,3 +130,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
