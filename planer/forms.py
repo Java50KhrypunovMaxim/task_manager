@@ -30,4 +30,3 @@ class DriverPositionUpdateForm(forms.ModelForm):
     class Meta:
         model = Worker
         fields = ["position"]
-

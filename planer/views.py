@@ -14,7 +14,6 @@ def index(request):
     num_positions = Position.objects.count()
     num_task_types = TaskType.objects.count()
 
-
     num_visits = request.session.get("num_visits", 0)
     request.session["num_visits"] = num_visits + 1
 
@@ -27,6 +26,7 @@ def index(request):
     }
 
     return render(request, "planer/index.html", context=context)
+
 
 class PositionListView(LoginRequiredMixin, generic.ListView):
     model = Position
@@ -62,6 +62,7 @@ class TaskTypeCreateView(LoginRequiredMixin, generic.CreateView):
 class TaskTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = TaskType
     success_url = reverse_lazy("planer:tasktype-list")
+
 
 class WorkerListView(LoginRequiredMixin, generic.ListView):
     model = Worker
