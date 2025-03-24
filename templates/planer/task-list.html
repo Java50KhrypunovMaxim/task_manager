@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>
+    Task List
+    <a href="{% url 'planer:task-create' %}" class="btn btn-primary link-to-page">Create</a>
+  </h1>
+
+  {% if task_list %}
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Priority</th>
+          <th>Deadline</th>
+          <th>Assigned Workers</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for task in task_list %}
+          <tr>
+            <td>
+              <a href="{% url 'planer:task-detail' task.id %}">{{ task.name }}</a>
+            </td>
+            <td>{{ task.priority }}</td>
+            <td>{{ task.deadline|date:"d-m-Y" }}</td>
+            <td>
+              {% if task.assignees.all %}
+                <ul class="list-unstyled">
+                  {% for worker in task.assignees.all %}
+                    <li>{{ worker.username }} ({{ worker.position.name }})</li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <span class="text-muted">No workers assigned</span>
+              {% endif %}
+            </td>
+            <td>
+              <a href="{% url 'planer:task-update' task.id %}" class="btn btn-sm btn-secondary">Edit</a>
+              <a href="{% url 'planer:task-delete' task.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No tasks available</p>
+  {% endif %}
+{% endblock %}
+
