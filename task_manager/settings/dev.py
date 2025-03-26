@@ -3,7 +3,12 @@ from .base import *
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", False) != "False"
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "planner-application.onrender.com"]
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "planner-application.onrender.com",
+    os.getenv("RENDER_EXTERNAL_HOSTNAME", ""),
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
