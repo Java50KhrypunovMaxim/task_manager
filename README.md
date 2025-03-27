@@ -110,4 +110,7 @@ This is a Django-based planner application deployed on Render.
 - User authentication
 - Responsive design
 
+## Test User
+login: Ira0109
+password: Max170289
 
