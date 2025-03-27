@@ -98,4 +98,16 @@ This project is licensed under the MIT License.
 ## Contact
 For any issues or feature requests, open an issue on GitHub or contact me at [your email].
 
+# Planner Application
+
+This is a Django-based planner application deployed on Render.
+
+## 🚀 Live Demo
+[Planner Application on Render](https://planner-application.onrender.com/)
+
+## Features
+- Task management
+- User authentication
+- Responsive design
+
 
